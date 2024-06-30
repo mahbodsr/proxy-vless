@@ -176,7 +176,7 @@ async function remoteSocketToWS(
     hasIncomingData = true;
     remoteChunkCount++;
     if (webSocket.readyState !== WS_READY_STATE_OPEN) {
-      controller.error("webSocket.readyState is not open, maybe close");
+      console.error("webSocket.readyState is not open, maybe close");
     }
     if (vlessHeader) {
       webSocket.send(await new Blob([vlessHeader, data]).arrayBuffer());
