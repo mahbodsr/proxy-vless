@@ -1,9 +1,12 @@
 const WebSocket = require("ws");
+const http = require("http");
 const { Readable } = require("stream");
 const net = require("net");
 
 // 创建 WebSocket 服务器
-const wss = new WebSocket.Server({ port: 10000 });
+const server = http.createServer();
+server.listen(10000);
+const wss = new WebSocket.Server({ server });
 let userID = "0fc8cd43-4016-4bf9-98dc-80bcc519f3ed";
 let proxyIP = "";
 
