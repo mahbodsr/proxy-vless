@@ -1,13 +1,21 @@
 import net from "net";
 import { WebSocket, createWebSocketStream } from "ws";
 import { TextDecoder } from "util";
-// const logcb = (...args) => console.log.bind(this, ...args);
-// const errcb = (...args) => console.error.bind(this, ...args);
+import { createServer } from "http";
 
 const uuid = "e6752ef9-4518-473f-a278-07c098878c56".replace(/-/g, "");
 const port = 10000;
 
-const wss = new WebSocket.Server({ port });
+const server = createServer((req, res) => {
+  res.statusCode = 200;
+  res.end();
+});
+
+server.listen(port, () => {
+  console.log("HTTP server is running");
+});
+
+const wss = new WebSocket.Server({ server });
 wss.on("connection", (ws) => {
   ws.once("message", (msg) => {
     if (msg instanceof ArrayBuffer || Array.isArray(msg)) return;
