@@ -1,7 +1,7 @@
-const { CronJob } = require("cron");
-const https = require("https");
+import { CronJob } from "cron";
+import * as https from "https";
 
-const backendUrl = "https://proxy-vless.onrender.com";
+const backendUrl = "https://live-crypto-price-bot.onrender.com";
 new CronJob("*/10 * * * *", () => {
   https
     .get(backendUrl, (res) => {
