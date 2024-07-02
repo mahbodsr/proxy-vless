@@ -1,7 +1,7 @@
 import { CronJob } from "cron";
 import * as https from "https";
 
-const backendUrl = "https://proxy-vless.onrender.com";
+const backendUrl = process.env.URL || "https://proxy-vless.onrender.com";
 new CronJob("*/10 * * * *", () => {
   https
     .get(backendUrl, (res) => {
